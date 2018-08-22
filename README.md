@@ -6,4 +6,4 @@ potential social good projects.
 Please file a bug report or a feature request ([link](https://github.com/anidata/twitter-data/issues/new/choose)).
 
 ## Contributing
-Please see CONTRIBUTING.md for details.
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.

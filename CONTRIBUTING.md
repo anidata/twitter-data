@@ -3,7 +3,7 @@
 ## Reporting Bugs
 TODO
 
-## Tutorial requests/enhancements
+## Feature requests/enhancements
 TODO
 
 ## Code contributions
