@@ -1,4 +1,6 @@
 # Anidata Twitter Data Project
+[![Build Status](https://travis-ci.com/anidata/twitter-data.svg?branch=master)](https://travis-ci.com/anidata/twitter-data)
+
 This project is for collecting and analyzing Twitter data sets to identify
 potential social good projects.
 
