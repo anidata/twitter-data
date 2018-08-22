@@ -1,9 +1,11 @@
 language: python
 python:
-  - "3.6"
-
+- '3.6'
 services:
-  - docker
-
+- docker
 script:
-  - ./ci/build-images.sh
+- "./ci/build-images.sh"
+notifications:
+  slack:
+    rooms:
+      secure: kafSOG4sADslzwFtKgeREfg1HsOTwr+kGjdlBJ1PNhwLp0QfMHCSqyZQjtQew1/MIRo7FJSFF9KKkAFoIbwhH4JioUt0R97jT956t9ZaL5qLq6RmYaC0Obcsw+LhH9ZE2uf8UbCDDYHLzzjq4h0AJVQ6ORzM/4vp7QTXkifE8PCz0BK0Pr/PXBiZbyB75FDjHJ3/FyWRmufOrO/K4QSDDbm2TxyLyhVSWW798ld1O4U20GaVrR4/xX7USBTC8swIiCVDsu4IajVr1NMjlzxVaiX61SOuGYtyaexQ45/UjXlqfh/1TFXXMnjYPT/crpedOPmir8iysRWY0yV4Yh6Ny1USC5DGFmELHdZiaA8cfsxl8tn0L4mqhMyR8DbkQqbFRCLxuZlhmirhgBSlAfdmC+OW4VwnHbI1SH7i5d3BAtqiHVe/fOZJkSeHorrfnRsMA3riOZgYmOwdq1uGGHlt93CrGngza8GsM+8WORYuNUq7giMLCHJOiBElBb2TTnpo5f4pTyDEL7r4nYwZMOra6YSDEDdtgKZeL6LioafrUvsp90BRQixyZCwfWayhzDXt05r1uuOkFnujqpPDchkcMTD2UYoscPbLhZSQ5aA1Y+I3bNzijl5pXguIhc6Ch6wJPd0pDWZECjZRm3pIY79fRgK7YZjyiUJ9iqfFjgn8mvU=
