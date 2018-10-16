@@ -31,38 +31,54 @@ sinceId = None
 # "Returns results with an ID less than (that is, older than) or equal to the specified ID."
 max_id = -1
 
+# return tweets before the given date (optional)
+until_date = '2018-10-07'
 
-tweetCount = 0
+count = 0
 with open(fName, 'a') as f:
     while True:
         try:
             if (max_id <= 0):
                 # to the beginning of twitter time
                 if (not sinceId):
-                    results = api.search(q=query, count=tweetCount)
+                    results = api.search(q=query, count=tweetCount, lang='en', until=until_date)
                 # go to last tweet we downloaded
                 else:
-                    results = api.search(q=query, since_id=sinceId, count=tweetCount)
+                    results = api.search(q=query, since_id=sinceId, count=tweetCount, lang='en', until=until_date)
+
             # if max_id > 0 
             else:
                 # results from beginning of twitter time to max_id
                 if (not sinceId):
-                    results = api.search(q=query, max_id=str(max_id - 1), count=tweetCount)
+                    results = api.search(q=query, max_id=str(max_id - 1), count=tweetCount, lang='en', until=until_date)
                 # results from since_id to max_id
                 else:
                     results = api.search(q=searchQuery, count=tweetCount,
                                          max_id=str(max_id - 1),
-                                         since_id=sinceId)
+                                         since_id=sinceId,
+                                         lang = 'en',
+                                         until=until_date)
             if not results:
                 print("No more tweets found")
                 break
+                
             for result in results:
-                tweets_DF = pd.DataFrame({"text": [x.text for x in results]}, 
-                   index =[x.id for x in results])
+                tweets_DF = pd.DataFrame({"created_at": [x.created_at for x in results],
+                						  "text": [x.text for x in results], 
+                						  "geo": [x.geo for x in results],
+                						  "coordinates": [x.coordinates for x in results],
+                						  "place": [x.place for x in results],
+                						  "retweet_count": [x.retweet_count for x in results],
+                						  "favorite_count": [x.favorite_count for x in results],
+                						  "favorited": [x.favorited for x in results],
+                						  "retweeted": [x.retweeted for x in results]
+                                          }, 
+                                          index =[x.id for x in results])
                 tweets_DF.name = 'Tweets'
                 tweets_DF.index.name = "ID"
                 tweets_DF.to_csv(f, header=False)
-            tweetCount += len(results)
+                
+            count += len(results)
             print("Downloaded {0} tweets".format(tweetCount))
             max_id = results[-1].id
         except (KeyboardInterrupt, SystemExit):
